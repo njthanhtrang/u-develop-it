@@ -102,6 +102,7 @@ app.post("/api/candidate", ({ body }, res) => {
   );
   if (errors) {
     res.status(400).json({ error: errors });
+    return;
   }
   
   const sql = `INSERT INTO candidates (first_name, last_name, industry_connected)
