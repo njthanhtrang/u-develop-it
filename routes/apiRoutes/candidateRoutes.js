@@ -65,6 +65,7 @@ router.get("/candidates", (req, res) => {
         return;
       }
     
+    //   IF ONLY ONE ?, NO NEED TO USE ARRAY
       const sql = `INSERT INTO candidates (first_name, last_name, industry_connected, party_id)
         VALUES (?, ?, ?, ?)`;
       const params = [body.first_name, body.last_name, body.industry_connected, body.party_id];
