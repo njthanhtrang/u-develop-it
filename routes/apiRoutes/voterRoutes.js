@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require("../../db/connection");
 const inputCheck = require("../../utils/inputCheck");
 
-// Get all voters
+// Get all voters alphebetized by last name
 router.get("/voters", (req, res) => {
   // sort with ORDER BY last_name DESC
   const sql = `SELECT * FROM voters ORDER BY last_name`;
@@ -38,6 +38,8 @@ router.get("/voter/:id", (req, res) => {
   });
 });
 
+
+// Create a voter
 router.post("/voter", ({ body }, res) => {
   // Data validation
   const errors = inputCheck(body, "first_name", "last_name", "email");
@@ -56,11 +58,12 @@ router.post("/voter", ({ body }, res) => {
     }
     res.json({
       message: "success",
-      data: body,
+      data: body
     });
   });
 });
 
+// Update a voter's email
 router.put("/voter/:id", (req, res) => {
   // Data validation
   const errors = inputCheck(req.body, "email");
@@ -82,12 +85,13 @@ router.put("/voter/:id", (req, res) => {
       res.json({
         message: "success",
         data: req.body,
-        changes: result.affectedRows,
+        changes: result.affectedRows
       });
     }
   });
 });
 
+// Delete a voter
 router.delete("/voter/:id", (req, res) => {
     const sql = `DELETE FROM voters WHERE id = ?`;
 

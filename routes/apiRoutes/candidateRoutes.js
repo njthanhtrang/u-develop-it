@@ -78,7 +78,6 @@ router.get("/candidates", (req, res) => {
         res.json({
           message: "success",
           data: body,
-          changes: result.affectedRows
         });
       });
     });
@@ -113,7 +112,7 @@ router.get("/candidates", (req, res) => {
       });
     });
     
-  // DELETE a candidate
+  // Delete a candidate
   // ? is a prepared statement, executers same statements repeatedly
   // blocks SQL injection attacks, replaces client user var and inserts alt commands
   router.delete("/candidate/:id", (req, res) => {
